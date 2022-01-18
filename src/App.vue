@@ -1,5 +1,9 @@
 <script setup lang="ts">
 import TodoForm from "./components/TodoForm.vue";
+import TodoListItem from "./components/TodoListItem.vue";
+import { fetchTodos, allTodos } from "@/lib/supabase";
+
+fetchTodos();
 </script>
 
 <template>
@@ -15,6 +19,11 @@ import TodoForm from "./components/TodoForm.vue";
 
   <main>
     <TodoForm />
+    <ul>
+      <li v-for="todo in allTodos" :key="todo.id">
+        <TodoListItem :todo="todo" />
+      </li>
+    </ul>
   </main>
 </template>
 
