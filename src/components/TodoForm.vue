@@ -5,10 +5,7 @@ import { ref } from "vue";
 const task = ref("");
 
 const handleClick = async () => {
-  await addTodo({
-    user_id: import.meta.env.VITE_SUPABASE_USER_ID as string,
-    task: task.value,
-  });
+  await addTodo(task.value);
 
   task.value = "";
 };
