@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import TodoForm from "./components/TodoForm.vue";
 import TodoListItem from "./components/TodoListItem.vue";
-import { fetchTodos, allTodos } from "@/lib/supabase";
+import { signIn, allTodos } from "@/lib/supabase";
 
-fetchTodos();
+signIn();
 </script>
 
 <template>

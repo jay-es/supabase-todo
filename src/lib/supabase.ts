@@ -4,7 +4,21 @@ import { ref } from "vue";
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL as string;
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY as string;
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey);
+const supabase = createClient(supabaseUrl, supabaseAnonKey);
+
+export const signIn = async () => {
+  await new Promise((r) => setTimeout(r, 250));
+
+  if (!supabase.auth.user()) {
+    await supabase.auth.signIn({
+      email: import.meta.env.VITE_SUPABASE_USER_EMAIL as string,
+    });
+    alert("email sent");
+    return;
+  }
+
+  fetchTodos();
+};
 
 const allTodos = ref<Todo[]>([]);
 
