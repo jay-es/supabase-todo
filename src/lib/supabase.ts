@@ -4,7 +4,6 @@ import { ref } from "vue";
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL as string;
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY as string;
 const supabaseUserId = import.meta.env.VITE_SUPABASE_USER_ID as string;
-const supabaseUserEmail = import.meta.env.VITE_SUPABASE_USER_EMAIL as string;
 
 const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
@@ -12,8 +11,7 @@ export const signIn = async () => {
   await new Promise((r) => setTimeout(r, 250));
 
   if (!supabase.auth.user()) {
-    await supabase.auth.signIn({ email: supabaseUserEmail });
-    alert("email sent");
+    await supabase.auth.signIn({ provider: "github" });
     return;
   }
 
