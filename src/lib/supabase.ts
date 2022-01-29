@@ -16,6 +16,8 @@ export const signIn = async () => {
   }
 
   fetchTodos();
+
+  supabase.from("todos").on("*", fetchTodos).subscribe();
 };
 
 const allTodos = ref<Todo[]>([]);
@@ -91,7 +93,6 @@ async function updateTaskCompletion(todo: Todo, isCompleted: boolean) {
     }
 
     console.log("Updated task", todo.id);
-    todo.is_complete = isCompleted;
   } catch (err) {
     alert("Error");
     console.error("Unknown problem updating record", err);
